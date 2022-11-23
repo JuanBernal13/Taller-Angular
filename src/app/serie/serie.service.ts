@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { Serie } from "./serie"
+import { SerieDetail } from "./serieDetail"
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class SerieService {
 
   constructor(private http: HttpClient) { }
 
-  getSeries(): Observable<Serie[]> {
-    return this.http.get<Serie[]>(this.apiUrl);
+  getSeries(): Observable<SerieDetail[]> {
+    return this.http.get<SerieDetail[]>(this.apiUrl);
   }
 }

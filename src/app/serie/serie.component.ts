@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Serie } from "./serie"
+import { SerieDetail } from "./serieDetail"
 import { SerieService } from './serie.service';
 
 @Component({
@@ -8,9 +8,12 @@ import { SerieService } from './serie.service';
   styleUrls: ['./serie.component.css']
 })
 export class SerieComponent implements OnInit {
+
+  selected: Boolean = false;
+  selectedSerie!: SerieDetail;
   constructor(private serieService: SerieService) { }
 
-  series :Array<Serie>;
+  series :Array<SerieDetail>;
   promedio: number = 0;
 
   getSeries() {
@@ -19,7 +22,7 @@ export class SerieComponent implements OnInit {
     });
 }
 
-promedioTemporadaSeries(series: Serie[]): void {
+promedioTemporadaSeries(series: SerieDetail[]): void {
 
   var suma: number =0;
   const parrafo: HTMLElement = document.getElementById('average')!; // Nodo tbody que tiene el id="courses"
@@ -43,5 +46,11 @@ promedioTemporadaSeries(series: Serie[]): void {
 
   ngDoCheck(){
     this.promedioTemporadaSeries(this.series);
+  }
+
+
+  onSelected(serie: SerieDetail): void {
+    this.selected = true;
+    this.selectedSerie = serie;
   }
 }
